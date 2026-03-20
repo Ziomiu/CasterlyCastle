@@ -24,6 +24,8 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
+        transform.position = areaCenter;
+        transform.localScale = areaSize;
     }
 
     private IEnumerator SpawnEnemies()
