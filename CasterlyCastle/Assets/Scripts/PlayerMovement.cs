@@ -12,6 +12,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerControls controls;
     private Vector2 moveInput;
+    private Animator animator;
+
 
     void Awake()
     {
@@ -36,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<Animator>();
+
     }
 
     void Update()
@@ -47,6 +51,8 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
+        float currentSpeed = move.magnitude;
+        animator.SetFloat("Speed", currentSpeed);
     }
 
     void Jump()
