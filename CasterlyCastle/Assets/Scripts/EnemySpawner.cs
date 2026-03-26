@@ -8,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemyCount = 20;
 
+    [Header("Target")]
+    [SerializeField] private Transform targetPoint;
+
     [Header("Spawn Area")]
     [SerializeField] private Vector3 areaCenter = new Vector3(0f, 0.5f, 15f);
     [SerializeField] private Vector3 areaSize = new Vector3(20f, 1f, 10f);
@@ -42,7 +45,14 @@ public class EnemySpawner : MonoBehaviour
 
                 if (IsFarEnough(randomPosition))
                 {
-                    Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+                    GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+
+                    EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+                    if (movement != null)
+                    {
+                        movement.target = targetPoint;
+                    }
+
                     usedPositions.Add(randomPosition);
 
                     spawned++;
