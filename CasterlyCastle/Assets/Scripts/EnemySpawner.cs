@@ -22,13 +22,11 @@ public class EnemySpawner : MonoBehaviour
     [Header("Timing")]
     [SerializeField] private float spawnDelay = 1.5f;
 
-    private readonly List<Vector3> usedPositions = new List<Vector3>();
+    private List<Vector3> usedPositions = new List<Vector3>();
 
     private void Start()
     {
         StartCoroutine(SpawnEnemies());
-        transform.position = areaCenter;
-        transform.localScale = areaSize;
     }
 
     private IEnumerator SpawnEnemies()
@@ -41,20 +39,15 @@ public class EnemySpawner : MonoBehaviour
 
             for (int attempt = 0; attempt < maxPlacementAttemptsPerEnemy; attempt++)
             {
-                Vector3 randomPosition = GetRandomPositionInArea();
+                Vector3 pos = GetRandomPositionInArea();
 
-                if (IsFarEnough(randomPosition))
+                if (IsFarEnough(pos))
                 {
-                    GameObject enemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity);
+                    GameObject enemy = Instantiate(enemyPrefab, pos, Quaternion.identity);
 
-                    EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
-                    if (movement != null)
-                    {
-                        movement.target = targetPoint;
-                    }
+                    SetupEnemy(enemy);
 
-                    usedPositions.Add(randomPosition);
-
+                    usedPositions.Add(pos);
                     spawned++;
                     placed = true;
                     break;
@@ -69,36 +62,36 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnDelay);
         }
 
-        Debug.Log("Spawned enemies: " + spawned + "/" + enemyCount);
+        Debug.Log($"Spawned enemies: {spawned}/{enemyCount}");
+    }
+
+    private void SetupEnemy(GameObject enemy)
+    {
+        EnemyMovement movement = enemy.GetComponent<EnemyMovement>();
+
+        if (movement != null)
+        {
+            movement.target = targetPoint;
+        }
     }
 
     private Vector3 GetRandomPositionInArea()
     {
-        float randomX = Random.Range(
-            areaCenter.x - areaSize.x * 0.5f,
-            areaCenter.x + areaSize.x * 0.5f
-        );
+        float x = Random.Range(areaCenter.x - areaSize.x * 0.5f,
+                               areaCenter.x + areaSize.x * 0.5f);
 
-        float randomZ = Random.Range(
-            areaCenter.z - areaSize.z * 0.5f,
-            areaCenter.z + areaSize.z * 0.5f
-        );
+        float z = Random.Range(areaCenter.z - areaSize.z * 0.5f,
+                               areaCenter.z + areaSize.z * 0.5f);
 
-        float y = areaCenter.y;
-
-        return new Vector3(randomX, y, randomZ);
+        return new Vector3(x, areaCenter.y, z);
     }
 
-    private bool IsFarEnough(Vector3 candidatePosition)
+    private bool IsFarEnough(Vector3 candidate)
     {
-        foreach (Vector3 usedPosition in usedPositions)
+        foreach (var pos in usedPositions)
         {
-            float distance = Vector3.Distance(candidatePosition, usedPosition);
-
-            if (distance < minDistanceBetweenEnemies)
-            {
+            if (Vector3.Distance(candidate, pos) < minDistanceBetweenEnemies)
                 return false;
-            }
         }
 
         return true;

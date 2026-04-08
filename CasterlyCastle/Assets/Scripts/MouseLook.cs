@@ -23,7 +23,6 @@ public class MouseLook : MonoBehaviour
     {
         controls.Enable();
     }
-
     void OnDisable()
     {
         controls.Disable();
@@ -35,7 +34,7 @@ public class MouseLook : MonoBehaviour
         float mouseY = lookInput.y * sensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+        xRotation = Mathf.Clamp(xRotation, -90f, 60f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
 
