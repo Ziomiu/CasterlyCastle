@@ -10,7 +10,11 @@ public class MouseLook : MonoBehaviour
 
     PlayerControls controls;
     Vector2 lookInput;
-
+    void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Awake()
     {
         controls = new PlayerControls();
