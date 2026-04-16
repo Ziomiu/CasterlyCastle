@@ -232,7 +232,7 @@ MonoBehaviour:
   enemyLayer:
     serializedVersion: 2
     m_Bits: 256
-  attackPoint: {fileID: 458404687}
+  attackPoint: {fileID: 1062426079}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +783,6 @@ Transform:
   - {fileID: 1842660163}
   - {fileID: 411551849}
   - {fileID: 1895269761}
-  - {fileID: 1391153458}
   - {fileID: 1931915544}
   - {fileID: 1668956849}
   - {fileID: 963110381}
@@ -984,6 +983,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963110380}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1062426078
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1062426079}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1062426079
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062426078}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.34, z: 0.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1281567501}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1074523016 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6689036041284674117, guid: 0cf1395288ce6b84994bb50d89fe411f, type: 3}
@@ -1062,6 +1092,7 @@ Transform:
   m_Children:
   - {fileID: 310478381}
   - {fileID: 330585546}
+  - {fileID: 1062426079}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 10.903, z: 0}
 --- !u!1 &1514447760
