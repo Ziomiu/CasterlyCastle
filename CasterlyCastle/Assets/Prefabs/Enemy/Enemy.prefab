@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 895295647175740176}
   - component: {fileID: 4736001968235323554}
   - component: {fileID: 1657975547370088308}
-  - component: {fileID: -4851457013941063965}
   - component: {fileID: 5905403738119207999}
+  - component: {fileID: 4432134475302727748}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -72,7 +72,7 @@ NavMeshAgent:
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -80,21 +80,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-4851457013941063965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4590998994537565676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4465bf82505ebd45a49f64b3185906c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  target: {fileID: 0}
-  rotationSpeed: 10
-  movementThreshold: 0.1
 --- !u!114 &5905403738119207999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,6 +94,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   maxHealth: 100
   currentHealth: 0
+  attackDamage: 10
+--- !u!114 &4432134475302727748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590998994537565676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4465bf82505ebd45a49f64b3185906c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  defaultTarget: {fileID: 0}
+  player: {fileID: 0}
+  rotationSpeed: 10
+  movementThreshold: 0.1
+  detectionRange: 10
+  attackRange: 2
+  attackCooldown: 1.5
 --- !u!1 &4849185431524452808
 GameObject:
   m_ObjectHideFlags: 0
@@ -224,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2efe2e3f1c37145895a12f8be3aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hp_number
-  enemy: {fileID: 5905403738119207999}
+  enemy: {fileID: 0}
   hpText: {fileID: 2181673487973416906}
 --- !u!1 &4874585630275471976
 GameObject:
@@ -685,10 +690,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1098fe20b8c6f7544938ec2f5c336043, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8571133432440776473}
+    m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1098fe20b8c6f7544938ec2f5c336043, type: 3}
       insertIndex: -1
@@ -696,6 +698,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1098fe20b8c6f7544938ec2f5c336043, type: 3}
       insertIndex: -1
       addedObject: {fileID: 972303234598488880}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1098fe20b8c6f7544938ec2f5c336043, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6644136732273388956}
   m_SourcePrefab: {fileID: 100100000, guid: 1098fe20b8c6f7544938ec2f5c336043, type: 3}
 --- !u!4 &2561130451170124102 stripped
 Transform:
@@ -789,69 +794,15 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1001 &8176409422355366130
-PrefabInstance:
+--- !u!114 &6644136732273388956
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 2561130451170124102}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.01316
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.08991
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_Name
-      value: Ch10_nonPBR
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
---- !u!4 &8571133432440776473 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8e0d6d53dc4d8f24bb06297323c7bb0e, type: 3}
-  m_PrefabInstance: {fileID: 8176409422355366130}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2936670488205605884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc642ed45c1f81f43b134ce96cc1dc71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimationEvents

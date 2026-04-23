@@ -10,6 +10,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Header("Target")]
     [SerializeField] private Transform targetPoint;
+    [SerializeField] private Transform player;
 
     [Header("Spawn Area")]
     [SerializeField] private Vector3 areaCenter = new Vector3(0f, 0.5f, 15f);
@@ -71,7 +72,9 @@ public class EnemySpawner : MonoBehaviour
 
         if (movement != null)
         {
-            movement.target = targetPoint;
+            movement.defaultTarget = targetPoint;
+            movement.player = player;          
+
         }
     }
 
