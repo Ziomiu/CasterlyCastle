@@ -56,7 +56,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 3, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &1657975547370088308
 NavMeshAgent:
@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd2efe2e3f1c37145895a12f8be3aa13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Hp_number
-  enemy: {fileID: 0}
+  enemy: {fileID: 5905403738119207999}
   hpText: {fileID: 2181673487973416906}
 --- !u!1 &4874585630275471976
 GameObject:

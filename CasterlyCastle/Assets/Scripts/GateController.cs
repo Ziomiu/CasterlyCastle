@@ -9,10 +9,14 @@ public class GateController : MonoBehaviour
     private Vector3 closedPosition;
     private Vector3 openPosition;
     private bool opening = false;
+    private UnityEngine.AI.NavMeshObstacle obstacle;
+
 
     void Start()
     {
         closedPosition = transform.position;
+        obstacle = GetComponent<UnityEngine.AI.NavMeshObstacle>();
+
         openPosition = closedPosition + Vector3.up * openHeight;
 
         Invoke(nameof(OpenGate), delay);
@@ -21,6 +25,7 @@ public class GateController : MonoBehaviour
     void OpenGate()
     {
         opening = true;
+        obstacle.enabled = false;
     }
 
     void Update()
