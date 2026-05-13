@@ -4,35 +4,42 @@ public class GateController : MonoBehaviour
 {
     public float openHeight = 5f;
     public float speed = 2f;
-    public float delay = 5f;
 
     private Vector3 closedPosition;
     private Vector3 openPosition;
-    private bool opening = false;
-    private UnityEngine.AI.NavMeshObstacle obstacle;
 
+    private bool opening = false;
+
+    private UnityEngine.AI.NavMeshObstacle obstacle;
 
     void Start()
     {
         closedPosition = transform.position;
-        obstacle = GetComponent<UnityEngine.AI.NavMeshObstacle>();
 
         openPosition = closedPosition + Vector3.up * openHeight;
 
-        Invoke(nameof(OpenGate), delay);
+        obstacle = GetComponent<UnityEngine.AI.NavMeshObstacle>();
     }
 
-    void OpenGate()
+    public void OpenGate()
     {
         opening = true;
-        obstacle.enabled = false;
+
+        if (obstacle != null)
+        {
+            obstacle.enabled = false;
+        }
     }
 
     void Update()
     {
         if (opening)
         {
-            transform.position = Vector3.Lerp(transform.position, openPosition, Time.deltaTime * speed);
+            transform.position = Vector3.Lerp(
+                transform.position,
+                openPosition,
+                Time.deltaTime * speed
+            );
         }
     }
 }
